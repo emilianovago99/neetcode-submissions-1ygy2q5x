@@ -1,0 +1,28 @@
+
+class Solution {
+public:
+    bool isValid(string s) {
+        std::stack<char> pila;
+
+        for (char c : s) {
+            if (c == '(' || c == '{' || c == '[') {
+                pila.push(c);
+            } else {
+                if (pila.empty()) {
+                    return false;
+                }
+
+                char tope = pila.top();
+                if ((c == ')' && tope == '(') || 
+                    (c == '}' && tope == '{') || 
+                    (c == ']' && tope == '[')) {
+                    pila.pop();
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        return pila.empty();
+    }
+};
